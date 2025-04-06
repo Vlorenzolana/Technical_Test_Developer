@@ -1,16 +1,26 @@
 #include "../inc/addnum.h"
 
+t_list add_even;
+t_list add_odd;
+int thread_count;
+
+pthread_t *threads = NULL;
+int threads_created = 0;
+
+FILE *fd = NULL;
+
 int main(int argc, char **argv) {
     thread_count = 0;
 
     if (argc < 2) {
         fprintf(stderr, "error: invalid argument number.\n");
-        fprintf(stderr, "use: %s -h|--help or %s -f|--file path/cfg.txt\n", argv[0], argv[0]);
+        fprintf(stderr, "use: %s -h|--help or %s -f|--file configfile/cfg.txt\n", argv[0], argv[0]);
         return EXIT_FAILURE;
     }
 
     if (strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
-        printf("usage: %s -f|--file path/cfg.txt\n", argv[0]);
+        printf("usage: %s -f|--file configfile/cfg.txt\n", argv[0]);
+        printf("file extension must be .txt and contain:\n");
         printf("file extension must be .txt and contain:\n");
         printf("Numbers per thread = <value>\nThread num = <value>\n");
         return EXIT_SUCCESS;
@@ -25,7 +35,7 @@ int main(int argc, char **argv) {
         if (check_file(argv[2]) != 0)
             return EXIT_FAILURE;
 
-//        handler_sig();
+        handler_sig();
 
         int num_per_thread;
         if (conf_parse(argv[2], &num_per_thread, &thread_count) != 0)
@@ -44,10 +54,12 @@ int main(int argc, char **argv) {
         usleep(100000);
         int i = 0;
         threads_created = 0;
-        while (i < thread_count) {
+        while (i < thread_count)
+        {
             data[i].thread_id = i;
             data[i].num_per_thread = num_per_thread;
-            if (pthread_create(&threads[i], NULL, threadFunc, &data[i]) != 0) {
+            if (pthread_create(&threads[i], NULL, threadFunc, &data[i]) != 0)
+            {
                 perror("pthread_create failed");
                 i++;
                 continue;
@@ -57,7 +69,8 @@ int main(int argc, char **argv) {
         }
 
         i = 0;
-        while (i < thread_count) {
+        while (i < thread_count)
+        {
             pthread_join(threads[i], NULL);
             i++;
         }

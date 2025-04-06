@@ -29,4 +29,8 @@ typedef struct s_threadData {
 extern t_list add_even;
 extern t_list add_odd;
 
+extern pthread_t *threads;
+extern int thread_count;
+extern int threads_created;
+
 #endif
