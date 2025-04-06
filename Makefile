@@ -1,20 +1,27 @@
-NAME = addnum
-
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iinc
+LDFLAGS = -lpthread
+SRC_DIR = src
+OBJ_DIR = obj
+BIN = addnum
+CONFIG = configfile/cfg.txt
 
-RM = rm -f
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-CFLAGS = -g3 -Wall -Wextra -Werror -pthread
+.PHONY: all clean valgrind
 
-SRCS = addnum.c
-OBJS = ${SRCS:.c=.o}
+all: $(BIN)
+
+$(BIN): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+valgrind: $(BIN)
+	valgrind -s --leak-check=full --track-origins=yes ./$(BIN) -f $(CONFIG)
 
 clean:
-    ${RM} ${OBJS}
-
-fclean: clean
-    ${RM} ${NAME}
-
-re: fclean all
-
-
+	rm -rf $(OBJ_DIR) $(BIN)
