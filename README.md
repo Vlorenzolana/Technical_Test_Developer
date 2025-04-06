@@ -36,8 +36,8 @@ A modular C program using POSIX threads to generate random numbers concurrently,
 │   └── test_addnum.c
 ├── configfile/
 │   └── cfg.txt
-├── obj/                  ← created automatically
-├── Makefile              ← 💡 this file
+├── obj/                 
+├── Makefile           
 └── README.md
 
 </pre>
