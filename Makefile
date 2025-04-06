@@ -40,7 +40,6 @@ valgrind: $(BIN)
 	@echo "$(GREEN) Valgrind with config: $(CFG)$(RESET)"
 	valgrind -s --leak-check=full --track-origins=yes ./$(BIN) -f $(CFG)
 
-## Build and run unit tests (excluding main.c)
 test: $(UNIT_SRC)
 	@echo "$(GREEN) Building unit tests...$(RESET)"
 	$(CC) $(CFLAGS) $(UNIT_SRC) $(SRCS) -o $(UNIT_EXE) $(LDFLAGS)
