@@ -19,20 +19,26 @@ A modular C program using POSIX threads to generate random numbers concurrently,
 
 ---
 
-## 📁 Project Structure
-.   ├── inc/ 
-	│ └── addnum.h # Global header with shared structures and prototypes
-	├── src/ 
-	│ ├── main.c # Main entry point 
-	│ ├── parser.c # Config file parsing logic 
-	│ ├── sighandler.c # Signal setup and cleanup 
-	│ ├── addnum.c # Thread logic and random number classification 
-	│ └── utils.c # List operations, locks, memory utils 
-	├── configfile/ 
-	│ └── cfg.txt # Example configuration file 
-	├── obj/ # Automatically created for object files 
-	├── Makefile # Build automation 
-	└── README.md # This documentation
+## Project Structure
+
+<pre>
+
+.
+├── inc/
+│   └── addnum.h            # Global header with shared structures and prototypes
+├── src/
+│   ├── main.c              # Main entry point
+│   ├── parser.c            # Config file parsing logic
+│   ├── sighandler.c        # Signal setup and cleanup
+│   ├── addnum.c            # Thread logic and random number classification
+│   └── utils.c             # List operations, locks, memory utils
+├── configfile/
+│   └── cfg.txt             # Example configuration file
+├── obj/                    # Automatically created for object files
+├── Makefile                # Build automation
+└── README.md               # Project documentation
+</pre>
+
 
 ---
 
