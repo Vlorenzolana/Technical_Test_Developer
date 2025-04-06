@@ -1,0 +1,2 @@
+Numbers per thread = 10
+Thread num = 400

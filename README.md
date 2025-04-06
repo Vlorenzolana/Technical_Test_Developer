@@ -5,7 +5,7 @@
 
 Compile the normal program (without tests):
 
-gcc -o addnum addnum.c -lpthread
+gcc -g3 -o addnum addnum.c -lpthread -Wall -Wextra -Werror
 
 
 Execute the program:
@@ -29,7 +29,7 @@ valgrind --leak-check=full --show-leak-kinds=all ./addnum -f configfile/cfg.txt
 
 Compilar el programa normal (sin pruebas):
 
-gcc -o addnum addnum.c -lpthread
+gcc -g3 -o addnum addnum.c -lpthread -Wall -Wextra -Werror
 
 
 Ejecutar el programa:
