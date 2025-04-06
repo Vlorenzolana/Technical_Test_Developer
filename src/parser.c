@@ -1,4 +1,4 @@
-#include "../../inc/addnum.h"
+#include "../inc/addnum.h"
 
 int conf_parse(const char *filename, int *num_per_thread, int *thread_num) {
     FILE *fd = fopen(filename, "r");
