@@ -1,49 +1,98 @@
-# Technical_Test_Developer
+### Technical_Test_Developer
 ## COMPILING AND EXEC INSTRUCTIONS
-## SPANISH BELOW
 --------------------------------
+# addnum – Multithreaded Even/Odd Number Separator in C
 
-Compile the normal program (without tests):
+A modular C program using POSIX threads to generate random numbers concurrently, separate them into even and odd lists, and manage thread-safe access with read/write locks (`pthread_rwlock_t`).
 
-gcc -g3 -o addnum addnum.c -lpthread -Wall -Wextra -Werror
+## Features
 
+- ✅ **Multithreaded number generation**
+- ✅ **Thread-safe shared memory access **
+- ✅ **READ-WRITE optimization ensured with pthread_rwlock_t locks.**
+- ✅ **Separation into even/odd number lists**
+- ✅ **Graceful signal handling (SIGINT / SIGQUIT)**
+- ✅ **Validated config file input**
+- ✅ **Modular source structure**
+- ✅ **VALGRIND-tested , clean memory management**
+- ✅ **User-friendly `Makefile` & runtime logs**
 
-Execute the program:
+---
+
+## 📁 Project Structure
+.   ├── inc/ 
+	│ └── addnum.h # Global header with shared structures and prototypes
+	├── src/ 
+	│ ├── main.c # Main entry point 
+	│ ├── parser.c # Config file parsing logic 
+	│ ├── sighandler.c # Signal setup and cleanup 
+	│ ├── addnum.c # Thread logic and random number classification 
+	│ └── utils.c # List operations, locks, memory utils 
+	├── configfile/ 
+	│ └── cfg.txt # Example configuration file 
+	├── obj/ # Automatically created for object files 
+	├── Makefile # Build automation 
+	└── README.md # This documentation
+
+---
+
+## Build Instructions
+
+### ✅ Compile the Project
+
+```bash
+make
+make re
+make valgrind
+---
+
+## Build Instructions
+
+### ✅ Compile the Project
+
+```bash
+make
+
+### ✅ Rebuild From Scratch
+
+make re
+
+### ✅  Clean the Project
+
+make clean
+
+### ✅ Help
+
+make help
+
+### ✅  Run the Program
 
 ./addnum -f configfile/cfg.txt
 
+Or via:
 
-Or to see the help:
+make run
 
-./addnum -h
+---
 
+## Default config file:
+     configfile/cfg.txt
+     
+### Configuration File Format
 
-Check for leaks:
+Configuration must follow a key = value format (case-insensitive keys allowed):
 
-gcc -g3 -o addnum addnum.c -lpthread
-valgrind --leak-check=full --show-leak-kinds=all ./addnum -f configfile/cfg.txt
---------------------------------
-## INSTRUCCIONES DE COMPILACION Y EJECUCION
-## ENGLISH ABOVE
---------------------------------
+numbers_per_thread = 10
+thread_num = 4
 
-Compilar el programa normal (sin pruebas):
+    numbers_per_thread: how many random numbers each thread will generate (max: 1000)
 
-gcc -g3 -o addnum addnum.c -lpthread -Wall -Wextra -Werror
+    thread_num: how many threads to spawn (max: 100)
 
+## Limits:
 
-Ejecutar el programa:
+    numbers_per_thread <= 1000
 
-./addnum -f cfg.txt
+    thread_num <= 100
 
-
-O para ver la ayuda
-
-./addnum -h
-
-
-Comprobar leaks:
-
-gcc -g3 -o addnum addnum.c -lpthread
-valgrind --leak-check=full --show-leak-kinds=all ./addnum -f configfile/cfg.txt
-
+# Example file path: configfile/cfg.txt

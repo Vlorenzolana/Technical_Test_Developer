@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     thread_count = 0;
 
     if (argc < 2) {
-        fprintf(stderr, "error: invalid argument number.\n");
+        fprintf(stderr, "\033[1;31merror: invalid argument number.\033[0m\n");
         fprintf(stderr, "use: %s -h|--help or %s -f|--file configfile/cfg.txt\n", argv[0], argv[0]);
         return EXIT_FAILURE;
     }
@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     else if (strcmp(argv[1], "-f") == 0 || strcmp(argv[1], "--file") == 0)
     {
         if (argc < 3) {
-            fprintf(stderr, "path to the config file is missing.\n");
+            fprintf(stderr, "\033[1;31mpath to the config file is missing.\033[0m\n");
             return EXIT_FAILURE;
         }
 
@@ -43,7 +43,7 @@ int main(int argc, char **argv) {
 
         threads = malloc(thread_count * sizeof(pthread_t));
         if (!threads)
-            exit_error("error: malloc threads");
+            exit_error("\033[1;31merror: malloc threads\033[0m\n");
 
         t_threadData data[thread_count];
 
@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
             data[i].num_per_thread = num_per_thread;
             if (pthread_create(&threads[i], NULL, threadFunc, &data[i]) != 0)
             {
-                perror("pthread_create failed");
+                perror("\033[1;31mpthread_create failed\033[0m\n");
                 i++;
                 continue;
             }
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
     }
     else
     {
-        fprintf(stderr, "invalid parameter.\n");
+        fprintf(stderr, "\033[1;31minvalid parameter.\033[0m\n");
         return EXIT_FAILURE;
     }
 }
