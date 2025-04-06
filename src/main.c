@@ -7,6 +7,8 @@ int thread_count;
 pthread_t *threads = NULL;
 int threads_created = 0;
 
+FILE *fd = NULL;
+
 int main(int argc, char **argv) {
     thread_count = 0;
 

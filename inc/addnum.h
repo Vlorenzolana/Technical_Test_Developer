@@ -32,13 +32,8 @@ extern t_list add_odd;
 extern pthread_t *threads;
 extern int thread_count;
 extern int threads_created;
+extern FILE *fd;
 
-FILE *fd = NULL;
-
-void handler_sig(void);
-void sig_handler(int sig);
-void free_list(t_list *list);
-void exit_error(const char *msg);
 void init_list(t_list *list, int load_size);
 int add_num(t_list *list, int number);
 void print_list(const char *title, t_list *list);
@@ -46,5 +41,9 @@ int check_file(const char *filename);
 int conf_parse(const char *filename, int *num_per_thread, int *thread_num);
 void* threadFunc(void *arg);
 int check_thread_max(int thread_num);
+void handler_sig(void);
+void sig_handler(int sig);
+void free_list(t_list *list);
+void exit_error(const char *msg);
 
 #endif
