@@ -15,6 +15,7 @@ A modular C program using POSIX threads to generate random numbers concurrently,
 - ✅ **Validated config file input**
 - ✅ **Modular source structure**
 - ✅ **VALGRIND-tested , clean memory management**
+- ✅ **UNIT TEST and Makefile test target**
 - ✅ **User-friendly `Makefile` & runtime logs**
 
 ---
@@ -22,21 +23,23 @@ A modular C program using POSIX threads to generate random numbers concurrently,
 ## Project Structure
 
 <pre>
-
 .
 ├── inc/
-│   └── addnum.h            # Global header with shared structures and prototypes
+│   └── addnum.h
 ├── src/
-│   ├── main.c              # Main entry point
-│   ├── parser.c            # Config file parsing logic
-│   ├── sighandler.c        # Signal setup and cleanup
-│   ├── addnum.c            # Thread logic and random number classification
-│   └── utils.c             # List operations, locks, memory utils
+│   ├── main.c
+│   ├── parser.c
+│   ├── addnum.c
+│   ├── utils.c
+│   └── sighandler.c
+├── test/
+│   └── test_addnum.c
 ├── configfile/
-│   └── cfg.txt             # Example configuration file
-├── obj/                    # Automatically created for object files
-├── Makefile                # Build automation
-└── README.md               # Project documentation
+│   └── cfg.txt
+├── obj/                  ← created automatically
+├── Makefile              ← 💡 this file
+└── README.md
+
 </pre>
 
 
@@ -78,6 +81,10 @@ make help
 Or via:
 
 make run
+
+### ✅ Run Tests
+
+make test
 
 ---
 

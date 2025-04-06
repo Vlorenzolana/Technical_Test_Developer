@@ -10,7 +10,7 @@ CFG ?= configfile/cfg.txt
 
 MAIN_SRC := $(SRC_DIR)/main.c
 ALL_SRCS := $(wildcard $(SRC_DIR)/*.c)
-SRCS := $(filter-out $(MAIN_SRC), $(ALL_SRCS)) # everything except main.c
+SRCS := $(filter-out $(MAIN_SRC), $(ALL_SRCS))
 OBJS := $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(ALL_SRCS))
 
 UNIT_SRC := $(TEST_DIR)/test_addnum.c
@@ -24,12 +24,12 @@ RESET := \033[0m
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	@echo "$(GREEN) Linking...$(RESET)"
+	@echo "$(GREEN) Linking $(RESET)"
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
-	@echo "$(GREEN) Compiling $<...$(RESET)"
+	@echo "$(GREEN) Compiling $(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@
 
 run: $(BIN)
@@ -41,7 +41,7 @@ valgrind: $(BIN)
 	valgrind -s --leak-check=full --track-origins=yes ./$(BIN) -f $(CFG)
 
 test: $(UNIT_SRC)
-	@echo "$(GREEN) Building unit tests...$(RESET)"
+	@echo "$(GREEN) Building unit tests $(RESET)"
 	$(CC) $(CFLAGS) $(UNIT_SRC) $(SRCS) -o $(UNIT_EXE) $(LDFLAGS)
 	@echo "$(GREEN) 🧪 Running unit tests...$(RESET)"
 	./$(UNIT_EXE)
@@ -50,7 +50,7 @@ test_clean:
 	@rm -f $(UNIT_EXE)
 
 clean:
-	@echo "$(GREEN) Cleaning...$(RESET)"
+	@echo "$(GREEN) Cleaning $(RESET)"
 	@rm -rf $(OBJ_DIR) $(BIN) $(UNIT_EXE)
 
 re: clean all
