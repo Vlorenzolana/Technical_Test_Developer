@@ -12,7 +12,8 @@
 #include <signal.h>
 
 #define MAX_LINE 128
-#define THREAD_LIMIT 100
+#define THREAD_LIMIT 400
+#define MAX_NUMBERS_PER_THREAD 1000
 
 typedef struct s_list {
     int *numbers;

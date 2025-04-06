@@ -1,2 +1,2 @@
-Numbers_per_thread = 10
-thread_num = 400
+Numbers_per_thread = 5
+thread_num = 5

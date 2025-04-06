@@ -47,11 +47,18 @@ int conf_parse(const char *filename, int *num_per_thread, int *thread_num) {
         char value[64];
         if (sscanf(ptr, " %63[^=]= %63s", key, value) == 2)
         {
-            if (strstr(key, "Numbers per thread") != NULL)
+            if (strstr(key, "Numbers_per_thread") != NULL)
             {
                 *num_per_thread = atoi(value);
+                if (*num_per_thread <= 0 || *num_per_thread > MAX_NUMBERS_PER_THREAD)
+                {
+                    fprintf(stderr, "error: numbers_per_thread must be between 1 and %d.\n", MAX_NUMBERS_PER_THREAD);
+                    fclose(fd);
+                    return -1;
+                }
                 found_nums = 1;
-            } else if (strstr(key, "Thread num") != NULL)
+            }
+            else if (strstr(key, "thread_num") != NULL)
             {
                 *thread_num = atoi(value);
                 found_threads = 1;
