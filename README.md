@@ -1,5 +1,5 @@
-### Technical_Test_Developer
-## COMPILING AND EXEC INSTRUCTIONS
+# Technical_Test_Developer
+# COMPILING AND EXEC INSTRUCTIONS
 --------------------------------
 # addnum – Multithreaded Even/Odd Number Separator in C
 

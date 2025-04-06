@@ -10,6 +10,7 @@
 #include <ctype.h>
 #include <time.h>
 #include <signal.h>
+#include <assert.h>
 
 #define MAX_LINE 128
 #define THREAD_LIMIT 400
