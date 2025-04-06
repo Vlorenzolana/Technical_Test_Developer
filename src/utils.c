@@ -23,14 +23,6 @@ void init_list(t_list *list, int load_size)
         exit_error("read-write lock init error.");
 }
 
-int add_num(t_list *list, int number)
-{
-    if (list->count >= list->load_size)
-        return -1;
-    list->numbers[list->count++] = number;
-    return 0;
-}
-
 void print_list(const char *title, t_list *list)
 {
     printf("%s:\n", title);
