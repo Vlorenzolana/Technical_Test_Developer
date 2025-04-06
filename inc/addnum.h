@@ -33,6 +33,9 @@ extern pthread_t *threads;
 extern int thread_count;
 extern int threads_created;
 
+FILE *fd = NULL;
+
+void handler_sig(void);
 void sig_handler(int sig);
 void free_list(t_list *list);
 void exit_error(const char *msg);
