@@ -11,4 +11,7 @@
 #include <time.h>
 #include <signal.h>
 
+#define MAX_LINE 128
+#define THREAD_LIMIT 400
+
 #endif
