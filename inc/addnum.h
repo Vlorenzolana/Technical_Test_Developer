@@ -12,6 +12,6 @@
 #include <signal.h>
 
 #define MAX_LINE 128
-#define THREAD_LIMIT 400
+#define THREAD_LIMIT 100
 
 #endif

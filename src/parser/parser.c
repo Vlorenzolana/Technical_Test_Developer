@@ -1,6 +1,4 @@
 #include "../../inc/addnum.h"
-#define MAX_LINE 128
-#define THREAD_LIMIT 400
 
 int conf_parse(const char *filename, int *num_per_thread, int *thread_num) {
     FILE *fd = fopen(filename, "r");
